@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: single-tier-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: single-tier-app
+
+  template:
+    metadata:
+      labels:
+        app: single-tier-app
+
+    spec:
+      containers:
+      - name: single-tier-container
+        image: single-tier-app:latest
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 4000
